@@ -3,7 +3,8 @@ import { DefaultTheme } from "styled-components";
 
 export const defaultTheme: DefaultTheme = {
   borderRadius: {
-    small: "4px"
+    small: "4px",
+    rounded: "50%",
   },
   palette: {
     common: {
