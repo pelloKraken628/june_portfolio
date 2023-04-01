@@ -36,5 +36,12 @@ const XSDown = (props: CSSObject) =>
       ${props}
     }
   `;
+// XXSmall devices breakpoint
+const XXSDown = (props: CSSObject) =>
+  css`
+    @media only screen and (max-width: 280px) {
+      ${props}
+    }
+  `;
 
-export { XLDown, LGDown, MDDown, SMDown, XSDown };
+export { XLDown, LGDown, MDDown, SMDown, XSDown, XXSDown };

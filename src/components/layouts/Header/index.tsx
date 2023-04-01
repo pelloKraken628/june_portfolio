@@ -5,6 +5,8 @@ import {
   HamburgerContainer,
   Logo,
   LogoContainer,
+  Mail,
+  MailContainer,
   Nav,
   NavItem,
   NavItemContainer,
@@ -12,10 +14,20 @@ import {
   Resume,
   ScrollTopBtn,
   ScrollTopBtnIcon,
+  SocialContainer,
+  SocialContainerBar,
+  SocialIcon,
+  SocialIconContainer,
   Wrapper,
 } from "./Header.style";
 import Hamburger from "./Hamburger";
-import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
+import { IconDefinition, faArrowUp } from "@fortawesome/free-solid-svg-icons";
+import {
+  faGithub,
+  faInstagram,
+  faLinkedin,
+  faTwitter,
+} from "@fortawesome/free-brands-svg-icons";
 
 const Header = () => {
   // nav item
@@ -71,6 +83,33 @@ const Header = () => {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }, 500);
   };
+  // Social Media container
+  interface ISocialICon {
+    icon: IconDefinition;
+    link: string;
+  }
+
+  const socialIcons: ISocialICon[] = useMemo(
+    () => [
+      {
+        icon: faGithub,
+        link: "https://github.com/idembele70/",
+      },
+      {
+        icon: faInstagram,
+        link: "https://www.instagram.com/playmaker1710/",
+      },
+      {
+        icon: faTwitter,
+        link: "https://twitter.com/Playmaker26_7",
+      },
+      {
+        icon: faLinkedin,
+        link: "https://www.linkedin.com/in/ibrahim-dembele-2a91351b3/",
+      },
+    ],
+    []
+  );
   return (
     <>
       <ScrollTopBtn display={isSticky && !toggleMenu} onClick={handleScrollTop}>
@@ -81,7 +120,7 @@ const Header = () => {
         isSticky={isSticky}
         isNearSticky={isNearSticky}
       >
-        <Wrapper isMenuOpen={toggleMenu}>
+        <Wrapper>
           <LogoContainer to="/">
             <Logo>IKD</Logo>
           </LogoContainer>
@@ -96,7 +135,7 @@ const Header = () => {
                     onMouseEnter={handleHover}
                     onMouseLeave={handleHover}
                     index={(idx += 1)}
-                    to={`#${name}`}
+                    href={`#${name}`}
                   >
                     {name}
                   </NavItem>
@@ -108,6 +147,16 @@ const Header = () => {
         </Wrapper>
         <Blur isVisible={toggleMenu} />
       </Container>
+      <SocialContainer>
+        {socialIcons.map(({ icon, link }, idx) => (
+          <SocialIconContainer target="_blank" key={idx} href={link}>
+            <SocialIcon icon={icon} />
+          </SocialIconContainer>
+        ))}
+      </SocialContainer>
+      <MailContainer>
+        <Mail href="mailto:idembele70@gmail.com">idembele70@gmail.com</Mail>
+      </MailContainer>
     </>
   );
 };

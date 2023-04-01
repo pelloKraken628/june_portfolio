@@ -1,13 +1,14 @@
+// Hero style
 import styled from 'styled-components';
-import { DefaultWrapper } from '../../Header.style';
-import { LGDown, MDDown, SMDown, XLDown } from '../../../../../styles/responsive';
+import { DefaultWrapper } from '../../layouts/Header/Header.style';
+import { LGDown, MDDown, SMDown, XLDown, XSDown, XXSDown } from '../../../styles/responsive';
 
 const Container = styled.section`
   height:calc(100vh - 70px);
   width:100%;
-  padding: 0 12px;
+  padding: 0 25px;
 `;
-const Wrapper = styled(DefaultWrapper)`
+const Wrapper = styled.div`
   height:100%;
   display:flex;
   flex-direction:column;
@@ -18,8 +19,8 @@ const Image = styled.img`
   border-radius:${({ theme }) => theme.borderRadius.rounded};
   margin-bottom:25px;
   ${SMDown({
-  height: 150,
-  width: 150,
+  maxHeight: 150,
+  maxWidth: "100%",
   marginBottom: 15
 })
   }
@@ -38,6 +39,12 @@ const Title = styled.h1`
   ${MDDown({
   fontSize: "calc(0.3rem + 6vw)"
 })}
+  ${XSDown({
+  fontSize: "calc(0.3rem + 3vw)"
+})}
+  ${XXSDown({
+  fontSize: 10
+})}
 `;
 const SubTitle = styled.h2`
   font-size:3rem;
@@ -45,6 +52,9 @@ const SubTitle = styled.h2`
   text-shadow: 1px 3px 11px rgba(0,0,0,.3);
 ${XLDown({
   fontSize: "calc(0.2rem + 3.3vw)"
+})}
+${XXSDown({
+  fontSize: 8
 })}
 `;
 export {

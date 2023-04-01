@@ -10,9 +10,8 @@ interface ContainerProps {
 }
 const Container = styled.header<ContainerProps>`
 width:100%;
-padding: 0 12px;
+height:70px;
 display:flex;
-justify-content:space-between;
 position: ${({ isNearSticky, isSticky }) => isNearSticky || isSticky ? "fixed" : "initial"};
 top: ${({ isNearSticky, isSticky }) => isNearSticky || isSticky ? 0 : "-100%"};
 transition:all 0.25s cubic-bezier(0.645,0.045,0.355,1);
@@ -42,18 +41,20 @@ const DefaultWrapper = styled.div`
   maxWidth: "auto"
 })}
 `;
-interface WrapperProps {
-  isMenuOpen: boolean;
-}
-const Wrapper = styled(DefaultWrapper) <WrapperProps>`
-  padding:8px 12px;
+const Wrapper = styled.div`
+  padding:0px 50px;
   display:flex;
+  flex:1;
   align-items:center;
   justify-content:space-between;
   transition:all 500ms ease;
-  ${({ isMenuOpen }) => SMDown({
-  maxWidth: isMenuOpen ? "100%" : ""
-})};
+  ${MDDown({
+  padding: "0 40px"
+})
+  }
+  ${SMDown({
+    padding: "0 25px"
+  })};
 `;
 const LogoContainer = styled(Link)`
 z-index:10;
@@ -114,7 +115,7 @@ interface NavItemProps {
   index: number
 }
 
-const NavItem = styled(Link) <NavItemProps>`
+const NavItem = styled.a <NavItemProps>`
   color:${({ theme }) => theme.palette.common.white};
   text-transform:Capitalize;
   padding:0 12px;
@@ -196,7 +197,7 @@ const ScrollTopBtn = styled.button<ScrollTopBtnProps>`
   border-radius: 50%;
   position: fixed;
   bottom: 30px;
-  right: 30px;
+  right: 60px;
   padding: 0;
   cursor: pointer;
   transition: all 1000ms ease;
@@ -213,6 +214,70 @@ const ScrollTopBtnIcon = styled(FontAwesomeIcon)`
   color: ${({ theme }) => theme.palette.common.white};
   font-size: 1.5rem;
 `
+// Social Media Container
+const DefaultMediaContainer = styled.div`
+position:fixed;
+bottom:0;
+display:flex;
+${SMDown({
+  display: "none"
+})
+  }
+::after {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 90px;
+  margin: 0px auto;
+  background-color:${({ theme }) => theme.palette.common.white};
+}
+`;
+
+const SocialContainer = styled(DefaultMediaContainer)`
+  left:40px;
+  flex-direction:column;
+`;
+const SocialIconContainer = styled.a`
+  padding:10px;
+  &:last-of-type {
+    margin-bottom:20px;
+  }
+  transition:all 0.25s cubic-bezier(0.645,0.045,0.355,1);
+  :hover {
+    transform: translateY(-3px);
+    // icon
+    & svg {
+      color:${({ theme }) => theme.palette.primary.main};
+    }
+  }
+`;
+const SocialIcon = styled(FontAwesomeIcon)`
+  color:${({ theme }) => theme.palette.common.white};
+  display:block;
+  height:20px;
+  width:20px;
+`;
+const SocialContainerBar = styled.div`
+  height:100px;
+  width:1px;
+  background-color:${({ theme }) => theme.palette.common.white};
+`;
+
+const MailContainer = styled(DefaultMediaContainer)`
+  right:40px;
+  writing-mode:vertical-rl;
+`;
+const Mail = styled.a`
+  font-size:0.75rem;
+  color:${({ theme }) => theme.palette.common.white};
+  margin-bottom:20px;
+  transition:all 0.25s cubic-bezier(0.645,0.045,0.355,1);
+  :hover {
+    transform: translateY(-3px);
+    color:${({ theme }) => theme.palette.primary.main};
+  }
+`;
+
 export {
   Container,
   DefaultWrapper,
@@ -228,4 +293,10 @@ export {
   Blur,
   ScrollTopBtn,
   ScrollTopBtnIcon,
+  SocialContainer,
+  SocialIconContainer,
+  SocialIcon,
+  SocialContainerBar,
+  MailContainer,
+  Mail
 }
