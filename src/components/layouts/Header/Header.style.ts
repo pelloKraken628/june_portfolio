@@ -80,6 +80,7 @@ const Nav = styled.nav<NavProps>`
   ${({ theme, isVisible }) => SMDown({
   position: "fixed",
   backgroundColor: theme.palette.secondary.main,
+  zIndedx: 12,
   top: 0,
   right: isVisible ? 0 : "-100%",
   bottom: 0,
@@ -93,7 +94,8 @@ const Nav = styled.nav<NavProps>`
 `;
 const NavItemContainer = styled.div`
   display:flex;
-    ${({ theme }) => SMDown({
+    ${SMDown({
+  width: "100%"
 })
   }
 `;
@@ -105,7 +107,7 @@ const NavItemWrapper = styled.div`
       opacity:0.5;
     }
     }
-    ${({ theme }) => SMDown({
+    ${SMDown({
   flexDirection: "column",
   alignItems: "center",
   width: "100%"

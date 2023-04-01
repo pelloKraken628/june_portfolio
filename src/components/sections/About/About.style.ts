@@ -115,17 +115,17 @@ const ImageContainer = styled.div`
   `;
 const ImageWrapper = styled.div`
 position:relative;
-z-index:-1;
 ${MDDown({
   marginBottom: 18
 })
   }
-&:hover {
+  z-index:-1;
+/* &:hover {
 ::after {
   left:10px;
   top:10px;
-}
-}
+} 
+}*/
 ::after {
 z-index:-1;
 border: 2px solid ${({ theme }) => theme.palette.primary.darker};

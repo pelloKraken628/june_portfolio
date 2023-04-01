@@ -61,7 +61,7 @@ const About = () => {
             </Paragraph>
           </ParagraphContainer>
           <ImageContainer>
-            <ImageWrapper>
+            <ImageWrapper className="imageWrapper">
               <Image
                 src={`${process.env.PUBLIC_URL}/assets/ma-photo.png`}
                 alt="hero"

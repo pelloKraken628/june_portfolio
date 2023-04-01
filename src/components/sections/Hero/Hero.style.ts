@@ -6,7 +6,8 @@ import { LGDown, MDDown, SMDown, XLDown, XSDown, XXSDown } from '../../../styles
 const Container = styled.section`
   height:calc(100vh - 70px);
   width:100%;
-  padding: 0 25px;
+  padding: 0 25px 48px;
+  margin-bottom:48px;
 `;
 const Wrapper = styled.div`
   height:100%;

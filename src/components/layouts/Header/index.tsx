@@ -60,14 +60,10 @@ const Header = () => {
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY === 70) {
-        //setDisplayScrollTop(true);
         setIsNearSticky(true);
-        console.log("isNearSticky", window.scrollY);
       } else if (window.scrollY > 150) {
         setIsSticky(true);
-        console.log("isSticky");
       } else {
-        //setDisplayScrollTop(false);
         setIsSticky(false);
         setIsNearSticky(false);
       }
