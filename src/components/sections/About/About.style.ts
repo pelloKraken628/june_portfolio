@@ -120,12 +120,6 @@ ${MDDown({
 })
   }
   z-index:-1;
-/* &:hover {
-::after {
-  left:10px;
-  top:10px;
-} 
-}*/
 ::after {
 z-index:-1;
 border: 2px solid ${({ theme }) => theme.palette.primary.darker};

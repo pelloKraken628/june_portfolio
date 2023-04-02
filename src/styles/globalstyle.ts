@@ -15,6 +15,7 @@ body {
 * {
   box-sizing: border-box;
   margin:0;
+  scroll-margin-top: 100px;
 }
 h1 {
   font-weight:700;

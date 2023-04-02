@@ -4,12 +4,15 @@ interface containerProps {
 }
 const Container = styled.div<containerProps>`
   height:100vh;
-  display:${({ visible }) => visible ? "flex" : "none"};
-  width:100vw;
+  max-height:${({ visible }) => visible ? 100 : 0}vh;
+  visibility:${({ visible }) => visible ? "visible" : "hidden"};
+  opacity:${({ visible }) => visible ? 1 : 0};
+  display:flex;
+  width:100%;
   justify-content:center;
   align-items:center;
-  transition: all 1500ms ease;
-  background-color:${({ theme }) => theme.palette.common.black};
+  transition: all 500ms ease;
+  background-color:${({ theme }) => theme.palette.secondary.darker};
 `;
 const TitleContainer = styled.div`
   overflow:hidden;

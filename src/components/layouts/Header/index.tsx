@@ -41,7 +41,7 @@ const Header = () => {
   // Menu toggler
   const [toggleMenu, setToggleMenu] = useState(false);
   const handleToggleMenu = (
-    e: React.MouseEvent<HTMLDivElement, MouseEvent>
+    e: React.MouseEvent<HTMLDivElement | HTMLAnchorElement, MouseEvent>
   ) => {
     setToggleMenu(!toggleMenu);
     const { style } = document.body;
@@ -132,6 +132,9 @@ const Header = () => {
                     onMouseLeave={handleHover}
                     index={(idx += 1)}
                     href={`#${name}`}
+                    onClick={(e) => {
+                      if (window.innerWidth < 768) handleToggleMenu(e);
+                    }}
                   >
                     {name}
                   </NavItem>

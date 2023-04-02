@@ -11,15 +11,18 @@ const RoutesWrapper = () => {
       setFirstRender(false);
     }, 5000);
   }, []);
-  return firstRender ? (
-    <Hi visible={firstRender} />
-  ) : (
+  return (
     <>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="*" element={<>NOT FOUND</>} />
-      </Routes>
+      <Hi visible={firstRender} />
+      {!firstRender && (
+        <>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="*" element={<>NOT FOUND</>} />
+          </Routes>
+        </>
+      )}
     </>
   );
 };

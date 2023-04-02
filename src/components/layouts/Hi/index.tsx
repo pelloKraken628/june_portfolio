@@ -6,9 +6,8 @@ type HiProps = {
 const Hi: React.FC<HiProps> = ({ visible }) => {
   const [index, setIndex] = useState(0);
   useEffect(() => {
-    if (index < 9) {
+    if (index <= 9) {
       const timer = setInterval(() => {
-        console.log("in", index);
         setIndex((idx) => (idx += 1));
       }, 500);
       return () => clearInterval(timer);
