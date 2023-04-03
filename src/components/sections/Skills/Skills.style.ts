@@ -12,9 +12,10 @@ const Wrapper = styled.div`
 `;
 const Main = styled.div`
     display:flex;
+    justify-content:center;
 `;
 const ImageContainer = styled.div`
-  width:100%;
+  width:50%;
   aspect-ratio:1;
 `;
 
