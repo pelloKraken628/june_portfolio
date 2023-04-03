@@ -20,6 +20,9 @@ const ImageContainer = styled.div`
   width:100%;
   max-width:208px;
   aspect-ratio:1;
+  display:flex;
+  justify-content:center;
+  align-items:center;
 `;
 const Image = styled.img`
   border-radius:${({ theme }) => theme.borderRadius.rounded};
