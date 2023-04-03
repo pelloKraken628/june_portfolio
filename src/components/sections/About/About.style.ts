@@ -2,8 +2,8 @@
 import styled from 'styled-components';
 import { DefaultWrapper } from '../../layouts/Header/Header.style';
 import { LGDown, MDDown, SMDown, XSDown, XXSDown } from '../../../styles/responsive';
-const Container = styled.section`
-  padding: 48px 150px;
+const Section = styled.section`
+padding: 48px 150px;
   max-width:1600px;
   margin: 0 auto;
   ${MDDown({
@@ -15,12 +15,16 @@ const Container = styled.section`
   ${XSDown({
   padding: "48px 25px"
 })}
-  `;
+`
+const Container = styled(Section)``;
 const Wrapper = styled.div`
 max-width:900px;
 margin:0 auto;
 `;
 const SectionHeader = styled.div`
+display:flex;
+align-items:center;
+margin-bottom:40px;
 `;
 interface SectionTitleProps {
   index: number;
@@ -28,7 +32,6 @@ interface SectionTitleProps {
 const SectionTitle = styled.h2<SectionTitleProps>`
   font-size:2rem;
   position: relative;
-  margin-bottom:40px;
   text-transform:capitalize;
   display:flex;
   align-items:center;
@@ -47,25 +50,14 @@ const SectionTitle = styled.h2<SectionTitleProps>`
     bottom:0px;
     color:${({ theme }) => theme.palette.primary.darker};
   }
-  ::after {
-    content:"";
-    display:block;
-    position:relative;
+
+`;
+const SectionHeaderBar = styled.div`
+    flex:1;
     margin-left:20px;
-    box-sizing:inherit;
     height:1px;
-    width:400px;
-    background-color:${({ theme }) => theme.palette.secondary.darker};
-    ${LGDown({
-  width: 300
-})
-  }
-    ${XSDown({
-    width: "30vw"
-  })
-  }
-    
-  }
+    background-color:${({ theme }) => theme.palette.primary.darker};
+    max-width:40%;
 `;
 const Main = styled.div`
   display:flex;
@@ -91,23 +83,7 @@ const Paragraph = styled.p`
 const Strong = styled.strong`
   color:${({ theme }) => theme.palette.primary.main};
   font-weight:normal;
-  cursor:pointer;
-  transition:all 0.25s ease;
-  position:relative;
   z-index:-1;
-  ::after {
-    content:"";
-    position:absolute;
-    bottom:-3px;
-    left:0;
-    height:1px;
-    background-color: ${({ theme }) => theme.palette.primary.darker};
-  }
-  &:hover {
-    ::after {
-      width:100%;
-    }
-  }
 `;
 const ImageContainer = styled.div`
   padding:0 12px;
@@ -138,12 +114,14 @@ border-radius:${({ theme }) => theme.borderRadius.small};
   display:block;
   `;
 export {
+  Section,
   Container,
   Wrapper,
   Paragraph,
   Strong,
   SectionHeader,
   SectionTitle,
+  SectionHeaderBar,
   Main,
   ParagraphContainer,
   ImageContainer,

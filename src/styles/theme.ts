@@ -4,6 +4,7 @@ import { DefaultTheme } from "styled-components";
 export const defaultTheme: DefaultTheme = {
   borderRadius: {
     small: "4px",
+    medium: "10px",
     rounded: "50%",
   },
   palette: {

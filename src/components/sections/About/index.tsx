@@ -8,6 +8,7 @@ import {
   Paragraph,
   ParagraphContainer,
   SectionHeader,
+  SectionHeaderBar,
   SectionTitle,
   Strong,
   Wrapper,
@@ -19,6 +20,7 @@ const About = () => {
       <Wrapper>
         <SectionHeader>
           <SectionTitle index={1}>About Me</SectionTitle>
+          <SectionHeaderBar />
         </SectionHeader>
         <Main>
           <ParagraphContainer>

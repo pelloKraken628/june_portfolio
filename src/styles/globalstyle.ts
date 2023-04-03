@@ -25,6 +25,10 @@ h2 {
   font-weight:700;
   line-height:1.2;
 }
+h3 {
+  font-weight:500;
+  line-height:1.2;
+}
 a {
   text-decoration: none;
   font-family: "Montserrat", "sans-serif";
