@@ -9,7 +9,7 @@ const Hi: React.FC<HiProps> = ({ visible }) => {
     if (index <= 9) {
       const timer = setInterval(() => {
         setIndex((idx) => (idx += 1));
-      }, 500);
+      }, 250);
       return () => clearInterval(timer);
     }
   }, [index]);

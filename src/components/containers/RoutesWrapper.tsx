@@ -1,15 +1,16 @@
 import React, { useLayoutEffect, useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, redirect } from "react-router-dom";
 import Home from "../pages/Home";
 import Header from "../layouts/Header";
 import Hi from "../layouts/Hi";
+import NotFound from "./NotFound";
 
 const RoutesWrapper = () => {
   const [firstRender, setFirstRender] = useState(true);
   useLayoutEffect(() => {
     setTimeout(() => {
       setFirstRender(false);
-    }, 5000);
+    }, 2500);
   }, []);
   return (
     <>
@@ -19,7 +20,7 @@ const RoutesWrapper = () => {
           <Header />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="*" element={<>NOT FOUND</>} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </>
       )}
