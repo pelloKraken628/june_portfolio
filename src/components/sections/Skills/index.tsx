@@ -13,12 +13,6 @@ import {
 } from "./Skills.style";
 
 const Skills = () => {
-  // Languages item
-  interface ISkillItem {
-    title: string;
-    percentage: number;
-    color: string;
-  }
   return (
     <Container id="skills">
       <Wrapper>

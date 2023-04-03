@@ -32,7 +32,7 @@ import {
 const Header = () => {
   // nav item
   const navItems: string[] = useMemo(
-    () => ["about", "skills", "project", "contact"],
+    () => ["about", "skills", "work", "contact"],
     []
   );
   const handleHover = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
@@ -80,12 +80,12 @@ const Header = () => {
     }, 500);
   };
   // Social Media container
-  interface ISocialICon {
+  interface ISocialIcon {
     icon: IconDefinition;
     link: string;
   }
 
-  const socialIcons: ISocialICon[] = useMemo(
+  const socialIcons: ISocialIcon[] = useMemo(
     () => [
       {
         icon: faGithub,

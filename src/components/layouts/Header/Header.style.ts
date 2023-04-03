@@ -18,6 +18,7 @@ transition:all 0.25s cubic-bezier(0.645,0.045,0.355,1);
 box-shadow: ${({ isSticky }) => isSticky ? "0 0" : "none"};
 background-color:${({ isMenuOpen, theme, isSticky }) => isMenuOpen || !isSticky ? "transparent" : theme.palette.secondary.main};
 box-shadow: ${({ isSticky }) => isSticky ? "0 2px 4px rgba(0,0,0,0.075)" : "none"};
+z-index:9;
 `;
 
 const DefaultWrapper = styled.div`
@@ -80,10 +81,9 @@ const Nav = styled.nav<NavProps>`
   ${({ theme, isVisible }) => SMDown({
   position: "fixed",
   backgroundColor: theme.palette.secondary.main,
-  zIndedx: 12,
   top: 0,
   right: isVisible ? 0 : "-100%",
-  bottom: 0,
+  height: "100%",
   width: "100%",
   maxWidth: 400,
   padding: "50px 0",

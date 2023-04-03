@@ -16,6 +16,11 @@ const Wrapper = styled.div`
   align-items:center;
   justify-content:center;
 `;
+const ImageContainer = styled.div`
+  width:100%;
+  max-width:208px;
+  aspect-ratio:1;
+`;
 const Image = styled.img`
   border-radius:${({ theme }) => theme.borderRadius.rounded};
   margin-bottom:25px;
@@ -61,6 +66,7 @@ ${XXSDown({
 export {
   Container,
   Wrapper,
+  ImageContainer,
   Image,
   Title,
   SubTitle,

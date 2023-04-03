@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { DefaultWrapper } from '../../layouts/Header/Header.style';
 import { LGDown, MDDown, SMDown, XSDown, XXSDown } from '../../../styles/responsive';
 const Section = styled.section`
-padding: 48px 150px;
+ padding: 48px 150px;
   max-width:1600px;
   margin: 0 auto;
   ${MDDown({
@@ -36,7 +36,6 @@ const SectionTitle = styled.h2<SectionTitleProps>`
   display:flex;
   align-items:center;
   white-space:nowrap;
-  z-index:-1;
   ${XXSDown({
   whiteSpace: "initial"
 })}
@@ -83,7 +82,6 @@ const Paragraph = styled.p`
 const Strong = styled.strong`
   color:${({ theme }) => theme.palette.primary.main};
   font-weight:normal;
-  z-index:-1;
 `;
 const ImageContainer = styled.div`
   padding:0 12px;
@@ -91,27 +89,34 @@ const ImageContainer = styled.div`
   `;
 const ImageWrapper = styled.div`
 position:relative;
+&:hover {
+  ::after {
+    left:10px;
+    top:10px;
+  }
+}
 ${MDDown({
   marginBottom: 18
 })
   }
-  z-index:-1;
-::after {
-z-index:-1;
-border: 2px solid ${({ theme }) => theme.palette.primary.darker};
-content:"";
-height:100%;
-width:100%;
-position:absolute;
-left:15px;
-top:15px;
-}
+    ::after {
+    content:"";
+    border: 2px solid ${({ theme }) => theme.palette.primary.darker};
+    height:100%;
+    width:100%;
+    position:absolute;
+    left:15px;
+    top:15px;
+    z-index:-1;
+    }
+
 `;
 const Image = styled.img`
 border-radius:${({ theme }) => theme.borderRadius.small};
   width:100%;
   height:100%;
   display:block;
+
   `;
 export {
   Section,
