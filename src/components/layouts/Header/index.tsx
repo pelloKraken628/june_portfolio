@@ -117,11 +117,11 @@ const Header = () => {
         isNearSticky={isNearSticky}
       >
         <Wrapper>
-          <LogoContainer to="/">
+          <LogoContainer onClick={handleScrollTop} to="/">
             <Logo>IKD</Logo>
           </LogoContainer>
           <HamburgerContainer onClick={handleToggleMenu}>
-            <Hamburger ariaLabel="Main Menu" />
+            <Hamburger isMenuOpen={toggleMenu} ariaLabel="Main Menu" />
           </HamburgerContainer>
           <Nav isVisible={toggleMenu}>
             <NavItemContainer>

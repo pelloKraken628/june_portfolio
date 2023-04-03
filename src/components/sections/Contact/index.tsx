@@ -10,7 +10,7 @@ import { ContactBtn, Title } from "./Contact.style";
 
 const Contact = () => {
   return (
-    <Container>
+    <Container id="contact">
       <Wrapper>
         <SectionHeader>
           <SectionTitle index={4}>Contact me</SectionTitle>

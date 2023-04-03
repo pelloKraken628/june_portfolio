@@ -33,15 +33,10 @@ const OpenedLine = styled(Line)<OpenedLineProps>`
 
 type Props = {
   ariaLabel: string;
+  isMenuOpen: boolean;
 };
 
-const Hamburger: React.FC<Props> = ({ ariaLabel }) => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
+const Hamburger: React.FC<Props> = ({ ariaLabel, isMenuOpen }) => {
   const line1StrokeDashArray = isMenuOpen ? "90 207" : "60 207";
   const line1StrokeDashOffset = isMenuOpen ? "-134" : "0";
   const line2StrokeDashArray = isMenuOpen ? "1 60" : "60 60";
@@ -49,11 +44,7 @@ const Hamburger: React.FC<Props> = ({ ariaLabel }) => {
   const line3StrokeDashArray = isMenuOpen ? "90 207" : "60 207";
   const line3StrokeDashOffset = isMenuOpen ? "-134" : "0";
   return (
-    <MenuButton
-      className={isMenuOpen ? "opened" : ""}
-      aria-label={ariaLabel}
-      onClick={toggleMenu}
-    >
+    <MenuButton className={isMenuOpen ? "opened" : ""} aria-label={ariaLabel}>
       <svg width="50" height="50" viewBox="0 0 100 100">
         <Line
           className="line line1"
