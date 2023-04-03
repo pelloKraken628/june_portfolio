@@ -1,28 +1,15 @@
 import { useMemo, useState } from "react";
 import {
-  Paragraph,
   SectionHeader,
   SectionHeaderBar,
   SectionTitle,
 } from "../About/About.style";
 import {
-  Col,
   Container,
-  Experience,
-  Date,
-  ExperienceHeader,
-  ExperienceHeaderBtn,
-  ExperienceMain,
-  ExperienceMainWrapper,
-  ExperienceTitle,
   Main,
-  SkillPercent,
-  SkillPercentContainer,
-  SkillText,
-  SkillWrapper,
-  Skillcontainer,
+  Image,
   Wrapper,
-  Job,
+  ImageContainer,
 } from "./Skills.style";
 
 const Skills = () => {
@@ -86,64 +73,12 @@ const Skills = () => {
           <SectionHeaderBar />
         </SectionHeader>
         <Main>
-          <Col>
-            <Paragraph>
-              I enjoy coding things from scratch and bringing ideas to life on
-              the browser. I speak several languages and use some tools to
-              practice them.
-            </Paragraph>
-            <Skillcontainer>
-              {skillItems.map(({ title, percentage, color }, idx) => (
-                <SkillWrapper key={idx}>
-                  <SkillText>{title}</SkillText>
-                  <SkillText>{percentage}%</SkillText>
-                  <SkillPercentContainer>
-                    <SkillPercent color={color} percentage={percentage} />
-                  </SkillPercentContainer>
-                </SkillWrapper>
-              ))}
-            </Skillcontainer>
-          </Col>
-          <Col>
-            <ExperienceHeader>
-              <ExperienceHeaderBtn
-                onClick={() => handleSelect(0)}
-                selected={selectedBtn === 0}
-              >
-                Experience
-              </ExperienceHeaderBtn>
-              <ExperienceHeaderBtn
-                onClick={() => handleSelect(1)}
-                selected={selectedBtn === 1}
-              >
-                Education
-              </ExperienceHeaderBtn>
-            </ExperienceHeader>
-            <ExperienceMain>
-              <ExperienceMainWrapper>
-                <Experience>
-                  <ExperienceTitle>UI Designer</ExperienceTitle>
-                  <Date>2000 - 2045</Date>
-                  <Job>Apex Software Inc</Job>
-                </Experience>
-                <Experience>
-                  <ExperienceTitle>UI Designer</ExperienceTitle>
-                  <Date>2000 - 2045</Date>
-                  <Job>Apex Software Inc</Job>
-                </Experience>
-                <Experience>
-                  <ExperienceTitle>UI Designer</ExperienceTitle>
-                  <Date>2000 - 2045</Date>
-                  <Job>Apex Software Inc</Job>
-                </Experience>
-                <Experience>
-                  <ExperienceTitle>UI Designer</ExperienceTitle>
-                  <Date>2000 - 2045</Date>
-                  <Job>Apex Software Inc</Job>
-                </Experience>
-              </ExperienceMainWrapper>
-            </ExperienceMain>
-          </Col>
+          <ImageContainer>
+            <Image
+              src={`${process.env.PUBLIC_URL}/assets/illustration-skills.png`}
+              alt="illustration construction"
+            />
+          </ImageContainer>
         </Main>
       </Wrapper>
     </Container>
