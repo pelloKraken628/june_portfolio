@@ -4,6 +4,7 @@ import About from "../sections/About";
 import Skills from "../sections/Skills";
 import Project from "../sections/Project";
 import Contact from "../sections/Contact";
+import Copyright from "../layouts/Copyright";
 
 const Home = () => {
   return (
@@ -13,6 +14,7 @@ const Home = () => {
       <Skills />
       <Project />
       <Contact />
+      <Copyright />
     </>
   );
 };
