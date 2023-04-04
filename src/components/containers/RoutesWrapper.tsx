@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { Route, Routes, redirect } from "react-router-dom";
 import Home from "../pages/Home";
 import Header from "../layouts/Header";
@@ -11,6 +11,9 @@ const RoutesWrapper = () => {
     setTimeout(() => {
       setFirstRender(false);
     }, 2500);
+  }, []);
+  useEffect(() => {
+    if (!firstRender) return;
   }, []);
   return (
     <>
