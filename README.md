@@ -17,6 +17,8 @@ The aim of this project is to create a portfolio that showcases both myself and 
 
 [![live demo link](https://img.shields.io/badge/Live%20Demo-00B9ae?style=for-the-badge)](https://idembele70.github.io/portfolio/)
 
+[![design of the app](./public/assets/design/app.png)](https://idembele70.github.io/portfolio/)
+
 ## Built With
 
 [![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://fr.reactjs.org/)&nbsp;&nbsp;
