@@ -1,8 +1,8 @@
 // Header Style
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { LGDown, MDDown, SMDown, XLDown, XSDown } from '../../../styles/responsive';
-import { Link, NavLink } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 interface ContainerProps {
   isNearSticky: boolean;
   isSticky: boolean;
@@ -43,6 +43,7 @@ const DefaultWrapper = styled.div`
 })}
 `;
 const Wrapper = styled.div`
+  opacity:0;
   padding:0px 50px;
   display:flex;
   flex:1;
@@ -238,6 +239,8 @@ ${SMDown({
 const SocialContainer = styled(DefaultMediaContainer)`
   left:40px;
   flex-direction:column;
+  opacity:0;
+  transform: translateX(-200px);
 `;
 const SocialIconContainer = styled.a`
   padding:10px;
@@ -268,6 +271,8 @@ const SocialContainerBar = styled.div`
 const MailContainer = styled(DefaultMediaContainer)`
   right:40px;
   writing-mode:vertical-rl;
+  opacity:0;
+  transform: translateX(200px);
 `;
 const Mail = styled.a`
   font-size:0.75rem;
@@ -281,24 +286,9 @@ const Mail = styled.a`
 `;
 
 export {
-  Container,
-  DefaultWrapper,
-  Wrapper,
-  LogoContainer,
-  Logo,
-  Nav,
-  NavItemContainer,
-  NavItemWrapper,
-  NavItem,
-  Resume,
-  HamburgerContainer,
-  Blur,
-  ScrollTopBtn,
+  Blur, Container,
+  DefaultWrapper, HamburgerContainer, Logo, LogoContainer, Mail, MailContainer, Nav, NavItem, NavItemContainer,
+  NavItemWrapper, Resume, ScrollTopBtn,
   ScrollTopBtnIcon,
-  SocialContainer,
-  SocialIconContainer,
-  SocialIcon,
-  SocialContainerBar,
-  MailContainer,
-  Mail
-}
+  SocialContainer, SocialContainerBar, SocialIcon, SocialIconContainer, Wrapper
+};

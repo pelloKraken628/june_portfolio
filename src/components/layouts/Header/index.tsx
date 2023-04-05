@@ -1,4 +1,11 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, {
+  useContext,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import {
   Blur,
   Container,
@@ -28,8 +35,15 @@ import {
   faLinkedin,
   faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
+import { gsap } from "gsap";
+import { useMyContext } from "../../containers/RoutesWrapper";
 
-const Header = () => {
+type HeaderProps = {
+  timelineIdx: number;
+  onSetTlIdx: React.Dispatch<React.SetStateAction<number>>;
+};
+
+const Header: React.FC<HeaderProps> = ({ timelineIdx, onSetTlIdx }) => {
   // nav item
   const navItems: string[] = useMemo(
     () => ["about", "skills", "work", "contact"],
@@ -106,6 +120,46 @@ const Header = () => {
     ],
     []
   );
+  const wrapperEl = useRef<HTMLDivElement>(null);
+  const socialContainerEl = useRef<HTMLDivElement>(null);
+  const mailContainerEl = useRef<HTMLDivElement>(null);
+  useLayoutEffect(() => {
+    const duration = 0.5;
+    const opacity = 1;
+    interface IHeaderScrollTrigger {
+      trigger: HTMLDivElement | null;
+      start: string;
+    }
+    const headerScrollTrigger: IHeaderScrollTrigger = {
+      trigger: wrapperEl.current,
+      start: "top center",
+    };
+    if (timelineIdx === 0) {
+      gsap.to(wrapperEl.current, {
+        opacity,
+        duration,
+        onComplete: () => {
+          onSetTlIdx(1);
+        },
+        scrollTrigger: headerScrollTrigger,
+      });
+    }
+    // socialContainer and mail
+    else if (timelineIdx === 2) {
+      const infoAnimation: GSAPTweenVars = {
+        opacity,
+        duration,
+      };
+      const infoTl = gsap.timeline({
+        scrollTrigger: headerScrollTrigger,
+      });
+      infoTl
+        .to(socialContainerEl.current, { ...infoAnimation, x: 0 })
+        .to(mailContainerEl.current, { ...infoAnimation, x: 0 });
+    }
+    return () => {};
+  }, [timelineIdx]);
+
   return (
     <>
       <ScrollTopBtn display={isSticky && !toggleMenu} onClick={handleScrollTop}>
@@ -116,7 +170,7 @@ const Header = () => {
         isSticky={isSticky}
         isNearSticky={isNearSticky}
       >
-        <Wrapper>
+        <Wrapper ref={wrapperEl}>
           <LogoContainer onClick={handleScrollTop} to="/">
             <Logo>IKD</Logo>
           </LogoContainer>
@@ -146,14 +200,14 @@ const Header = () => {
         </Wrapper>
         <Blur isVisible={toggleMenu} />
       </Container>
-      <SocialContainer>
+      <SocialContainer ref={socialContainerEl}>
         {socialIcons.map(({ icon, link }, idx) => (
           <SocialIconContainer target="_blank" key={idx} href={link}>
             <SocialIcon icon={icon} />
           </SocialIconContainer>
         ))}
       </SocialContainer>
-      <MailContainer>
+      <MailContainer ref={mailContainerEl}>
         <Mail href="mailto:idembele70@gmail.com">idembele70@gmail.com</Mail>
       </MailContainer>
     </>

@@ -5,9 +5,6 @@ const Container = styled(Section)`
   
 `;
 const Main = styled.div`
-  display:flex;
-  justify-content:center;
-  align-items:center;
 `;
 const Title = styled.p`
   font-size:1.5rem;
@@ -35,6 +32,7 @@ const ContactBtn = styled.a`
 `;
 export {
   Container,
+  Main,
   Title,
   ContactBtn,
 }

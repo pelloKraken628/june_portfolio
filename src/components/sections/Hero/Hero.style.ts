@@ -23,6 +23,7 @@ const ImageContainer = styled.div`
   display:flex;
   justify-content:center;
   align-items:center;
+  transform: scale(0);
 `;
 const Image = styled.img`
   border-radius:${({ theme }) => theme.borderRadius.rounded};
@@ -38,6 +39,8 @@ const Title = styled.h1`
   font-size:7rem;
   text-transform:uppercase;
   text-shadow: 1px 3px 11px rgba(0,0,0,.3);
+  transform:translateY(-100%);
+  opacity:0;
   ${XLDown({
   fontSize: "6rem",
   marginBottom: 5
@@ -59,6 +62,8 @@ const SubTitle = styled.h2`
   font-size:3rem;
   text-transform:uppercase;
   text-shadow: 1px 3px 11px rgba(0,0,0,.3);
+  transform:translateY(100%);
+  opacity:0;
 ${XLDown({
   fontSize: "calc(0.2rem + 3.3vw)"
 })}

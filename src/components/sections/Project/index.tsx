@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useLayoutEffect, useMemo, useRef } from "react";
 import {
   Container,
   ImageWrapper,
@@ -20,6 +20,8 @@ import {
 } from "../About/About.style";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faLink } from "@fortawesome/free-solid-svg-icons";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const Project = () => {
   //slide items
@@ -77,20 +79,48 @@ const Project = () => {
       },
     ],
   };
-
+  // gsap scroll trigger animations
+  const sectionEl = useRef<HTMLElement>(null);
+  const sectionHeaderEl = useRef<HTMLDivElement>(null);
+  const duration = 0.5;
+  useLayoutEffect(() => {
+    gsap.from(sectionHeaderEl.current, {
+      opacity: 0,
+      y: "100%",
+      duration,
+      scrollTrigger: {
+        trigger: sectionEl.current,
+        start: "top-=60% center",
+      },
+    });
+    gsap.from(".slideContainer", {
+      opacity: 0,
+      y: "100%",
+      duration,
+      scrollTrigger: {
+        trigger: sectionEl.current,
+        start: "top-=45% center",
+      },
+    });
+    return () => {};
+  }, []);
+  // on image load refresh scrolltrigger
+  const handleLoad = () => {
+    ScrollTrigger.refresh();
+  };
   return (
-    <Container id="work">
+    <Container ref={sectionEl} id="work">
       <Wrapper>
-        <SectionHeader>
+        <SectionHeader ref={sectionHeaderEl}>
           <SectionTitle index={3}> Work</SectionTitle>
           <SectionHeaderBar />
         </SectionHeader>
-        <SlideContainer {...settings}>
+        <SlideContainer className="slideContainer" {...settings}>
           {slideItems.map(({ github, link, img }, idx) => (
             <SlideWrapper key={idx}>
               <SlideItem>
                 <ImageWrapper>
-                  <SlideImage src={img} />
+                  <SlideImage onLoad={handleLoad} src={img} />
                   <Overlay>
                     <OverlayWrapper>
                       <OverlayIconLink href={github} target="_blank">

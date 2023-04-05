@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useLayoutEffect, useMemo, useRef } from "react";
 import {
   Container,
   Image,
@@ -13,16 +13,46 @@ import {
   Strong,
   Wrapper,
 } from "./About.style";
+import { gsap } from "gsap";
 
 const About = () => {
+  // gsap scroll trigger animation
+  const sectionEl = useRef<HTMLElement>(null);
+  const sectionHeaderEl = useRef<HTMLDivElement>(null);
+  const MainEl = useRef<HTMLDivElement>(null);
+  useLayoutEffect(() => {
+    // section header
+    const opacity = 0;
+    const y = "100%";
+    const duration = 0.5;
+    gsap.from(sectionHeaderEl.current, {
+      opacity,
+      y,
+      duration,
+      scrollTrigger: {
+        trigger: sectionEl.current,
+        start: "top-=345px center",
+      },
+    });
+    gsap.from(MainEl.current, {
+      opacity,
+      y,
+      duration,
+      scrollTrigger: {
+        trigger: sectionEl.current,
+        start: "top-=265px center",
+      },
+    });
+    return () => {};
+  }, []);
   return (
-    <Container id="about">
+    <Container ref={sectionEl} id="about">
       <Wrapper>
-        <SectionHeader>
+        <SectionHeader ref={sectionHeaderEl}>
           <SectionTitle index={1}>About Me</SectionTitle>
           <SectionHeaderBar />
         </SectionHeader>
-        <Main>
+        <Main ref={MainEl}>
           <ParagraphContainer>
             <Paragraph>
               Hello, my name is <Strong>Ibrahim Dembele</Strong> and I am{" "}
