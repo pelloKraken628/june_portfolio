@@ -22,6 +22,7 @@ import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faLink } from "@fortawesome/free-solid-svg-icons";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { fromFadeInUp, start } from "../../shared/gsap";
 
 const Project = () => {
   //slide items
@@ -82,27 +83,28 @@ const Project = () => {
   // gsap scroll trigger animations
   const sectionEl = useRef<HTMLElement>(null);
   const sectionHeaderEl = useRef<HTMLDivElement>(null);
-  const duration = 0.5;
   useLayoutEffect(() => {
-    gsap.from(sectionHeaderEl.current, {
-      opacity: 0,
-      y: "100%",
-      duration,
+    const sectionHeaderTween = gsap.from(sectionHeaderEl.current, {
+      ...fromFadeInUp,
+      delay: 0.1,
       scrollTrigger: {
         trigger: sectionEl.current,
-        start: "top-=60% center",
+        start,
       },
     });
-    gsap.from(".slideContainer", {
-      opacity: 0,
-      y: "100%",
-      duration,
+    const slideContainerTween = gsap.from(".slideContainer", {
+      ...fromFadeInUp,
+      delay: 0.3,
       scrollTrigger: {
         trigger: sectionEl.current,
-        start: "top-=45% center",
+        start: "top-=370px center",
       },
     });
-    return () => {};
+    return () => {
+      [sectionHeaderTween, slideContainerTween].forEach((el) =>
+        el.scrollTrigger?.kill()
+      );
+    };
   }, []);
   // on image load refresh scrolltrigger
   const handleLoad = () => {

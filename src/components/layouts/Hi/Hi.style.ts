@@ -14,6 +14,9 @@ const Container = styled.div<containerProps>`
   transition: all 500ms ease;
   background-color:${({ theme }) => theme.palette.secondary.darker};
 `;
+const Wrapper = styled.div`
+  
+`;
 const TitleContainer = styled.div`
   overflow:hidden;
   width:250px;

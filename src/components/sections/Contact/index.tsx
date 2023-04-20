@@ -8,6 +8,7 @@ import {
 } from "../About/About.style";
 import { ContactBtn, Main, Title } from "./Contact.style";
 import { gsap } from "gsap";
+import { fromFadeInUp, start } from "../../shared/gsap";
 
 const Contact = () => {
   const sectionEl = useRef<HTMLElement>(null);
@@ -16,24 +17,25 @@ const Contact = () => {
   const duration = 0.5;
 
   useLayoutEffect(() => {
-    gsap.from(sectionHeaderEl.current, {
-      opacity: 0,
-      y: "100%",
-      duration,
+    const sectionHeaderTween = gsap.from(sectionHeaderEl.current, {
+      ...fromFadeInUp,
+      delay: 0.1,
       scrollTrigger: {
         trigger: sectionEl.current,
-        start: "top-=475px center",
+        start: start,
       },
     });
-    gsap.from(mainEl.current, {
-      opacity: 0,
-      duration,
+    const mainTween = gsap.from(mainEl.current, {
+      ...fromFadeInUp,
+      delay: 0.3,
       scrollTrigger: {
         trigger: sectionEl.current,
-        start: "top-=350px center",
+        start: "top-=370px center",
       },
     });
-    return () => {};
+    return () => {
+      [sectionHeaderTween, mainTween].forEach((el) => el.scrollTrigger?.kill());
+    };
   }, []);
   return (
     <Container ref={sectionEl} id="contact">

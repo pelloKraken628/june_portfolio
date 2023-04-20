@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useLayoutEffect, useRef } from "react";
 import { Container, Paragraph, Wrapper } from "./Copyright.style";
+import { gsap } from "gsap";
+import { fromFadeIn } from "../../shared/gsap";
 
 const Copyright = () => {
   const year = new Date().getFullYear();
@@ -16,9 +18,23 @@ const Copyright = () => {
     "Eight",
     "Nine",
   ];
+  const containerEl = useRef<HTMLDivElement>(null);
+  useLayoutEffect(() => {
+    const containerTween = gsap.from(containerEl.current, {
+      ...fromFadeIn,
+      delay: 0.1,
+      scrollTrigger: {
+        trigger: containerEl.current,
+        start: "top-=570px center",
+      },
+    });
 
+    return () => {
+      containerTween.scrollTrigger?.kill();
+    };
+  }, []);
   return (
-    <Container>
+    <Container ref={containerEl}>
       <Wrapper>
         <Paragraph>Crafted by me using handiwork</Paragraph>
         <Paragraph>

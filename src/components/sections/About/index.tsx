@@ -1,4 +1,6 @@
-import React, { useLayoutEffect, useMemo, useRef } from "react";
+import { gsap } from "gsap";
+import { useLayoutEffect, useRef } from "react";
+import { fromFadeInUp, start } from "../../shared/gsap";
 import {
   Container,
   Image,
@@ -13,7 +15,6 @@ import {
   Strong,
   Wrapper,
 } from "./About.style";
-import { gsap } from "gsap";
 
 const About = () => {
   // gsap scroll trigger animation
@@ -22,28 +23,31 @@ const About = () => {
   const MainEl = useRef<HTMLDivElement>(null);
   useLayoutEffect(() => {
     // section header
-    const opacity = 0;
-    const y = "100%";
     const duration = 0.5;
-    gsap.from(sectionHeaderEl.current, {
-      opacity,
-      y,
+    const fadeInUp = {
+      ...fromFadeInUp,
       duration,
+    };
+    const sectionHeaderTween = gsap.from(sectionHeaderEl.current, {
+      ...fadeInUp,
+      delay: 0.1,
       scrollTrigger: {
         trigger: sectionEl.current,
-        start: "top-=345px center",
+        start: start,
+        markers: true,
       },
     });
-    gsap.from(MainEl.current, {
-      opacity,
-      y,
-      duration,
+    const mainTween = gsap.from(MainEl.current, {
+      ...fadeInUp,
+      delay: 0.3,
       scrollTrigger: {
         trigger: sectionEl.current,
-        start: "top-=265px center",
+        start: "top-=370px center",
       },
     });
-    return () => {};
+    return () => {
+      [sectionHeaderTween, mainTween].forEach((el) => el.scrollTrigger?.kill());
+    };
   }, []);
   return (
     <Container ref={sectionEl} id="about">

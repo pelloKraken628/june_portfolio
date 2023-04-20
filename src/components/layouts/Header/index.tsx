@@ -1,11 +1,20 @@
+import {
+  faGithub,
+  faInstagram,
+  faLinkedin,
+  faTwitter,
+} from "@fortawesome/free-brands-svg-icons";
+import { IconDefinition, faArrowUp } from "@fortawesome/free-solid-svg-icons";
+import { gsap } from "gsap";
 import React, {
-  useContext,
   useEffect,
   useLayoutEffect,
   useMemo,
   useRef,
   useState,
 } from "react";
+import { start, toFadeIn } from "../../shared/gsap";
+import Hamburger from "./Hamburger";
 import {
   Blur,
   Container,
@@ -22,21 +31,10 @@ import {
   ScrollTopBtn,
   ScrollTopBtnIcon,
   SocialContainer,
-  SocialContainerBar,
   SocialIcon,
   SocialIconContainer,
   Wrapper,
 } from "./Header.style";
-import Hamburger from "./Hamburger";
-import { IconDefinition, faArrowUp } from "@fortawesome/free-solid-svg-icons";
-import {
-  faGithub,
-  faInstagram,
-  faLinkedin,
-  faTwitter,
-} from "@fortawesome/free-brands-svg-icons";
-import { gsap } from "gsap";
-import { useMyContext } from "../../containers/RoutesWrapper";
 
 type HeaderProps = {
   timelineIdx: number;
@@ -124,20 +122,18 @@ const Header: React.FC<HeaderProps> = ({ timelineIdx, onSetTlIdx }) => {
   const socialContainerEl = useRef<HTMLDivElement>(null);
   const mailContainerEl = useRef<HTMLDivElement>(null);
   useLayoutEffect(() => {
-    const duration = 0.5;
-    const opacity = 1;
     interface IHeaderScrollTrigger {
       trigger: HTMLDivElement | null;
       start: string;
     }
     const headerScrollTrigger: IHeaderScrollTrigger = {
       trigger: wrapperEl.current,
-      start: "top center",
+      start,
     };
     if (timelineIdx === 0) {
       gsap.to(wrapperEl.current, {
-        opacity,
-        duration,
+        ...toFadeIn,
+        delay: 0.1,
         onComplete: () => {
           onSetTlIdx(1);
         },
@@ -146,16 +142,12 @@ const Header: React.FC<HeaderProps> = ({ timelineIdx, onSetTlIdx }) => {
     }
     // socialContainer and mail
     else if (timelineIdx === 2) {
-      const infoAnimation: GSAPTweenVars = {
-        opacity,
-        duration,
-      };
       const infoTl = gsap.timeline({
         scrollTrigger: headerScrollTrigger,
       });
       infoTl
-        .to(socialContainerEl.current, { ...infoAnimation, x: 0 })
-        .to(mailContainerEl.current, { ...infoAnimation, x: 0 });
+        .to(socialContainerEl.current, { ...toFadeIn, x: 0 })
+        .to(mailContainerEl.current, { ...toFadeIn, x: 0 });
     }
     return () => {};
   }, [timelineIdx]);
