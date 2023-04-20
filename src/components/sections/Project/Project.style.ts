@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Section } from '../About/About.style';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { XSDown } from '../../../styles/responsive';
+import { SMDown, XSDown } from '../../../styles/responsive';
 const Container = styled(Section)`
 `;
 const SlideContainer = styled(Slider)`
@@ -15,6 +15,9 @@ const SlideContainer = styled(Slider)`
 `;
 const SlideWrapper = styled.div`
 padding:8px;
+${SMDown({
+  padding: 0
+})}
 `;
 const SlideItem = styled.div`
 display:flex;

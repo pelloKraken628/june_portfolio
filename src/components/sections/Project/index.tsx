@@ -73,9 +73,9 @@ const Project = () => {
     centerMode: true,
     responsive: [
       {
-        breakpoint: 992,
+        breakpoint: 768,
         settings: {
-          slidesToShow: 1,
+          centerMode: false,
         },
       },
     ],
