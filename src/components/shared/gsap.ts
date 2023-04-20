@@ -1,4 +1,4 @@
-const start = "top-=470px center"
+const start = "top-=410px center"
 const toFadeIn: GSAPTweenVars = {
   opacity: 1,
   duration: 1

@@ -20,7 +20,8 @@ const About = () => {
   // gsap scroll trigger animation
   const sectionEl = useRef<HTMLElement>(null);
   const sectionHeaderEl = useRef<HTMLDivElement>(null);
-  const MainEl = useRef<HTMLDivElement>(null);
+  const paragraphContainerEl = useRef<HTMLDivElement>(null);
+  const imageContainerEl = useRef<HTMLDivElement>(null);
   useLayoutEffect(() => {
     // section header
     const duration = 0.5;
@@ -36,16 +37,29 @@ const About = () => {
         start: start,
       },
     });
-    const mainTween = gsap.from(MainEl.current, {
+    const isDesktop = window.innerWidth > 992;
+    const paragraphContainerTween = gsap.from(paragraphContainerEl.current, {
       ...fadeInUp,
-      delay: 0.3,
+      delay: 0.1,
       scrollTrigger: {
         trigger: sectionEl.current,
-        start: "top-=370px center",
+        start: isDesktop ? "top-=330px center" : "top-=80px center",
+      },
+    });
+    const imageContainerTween = gsap.from(imageContainerEl.current, {
+      ...fadeInUp,
+      delay: 0.1,
+      scrollTrigger: {
+        trigger: sectionEl.current,
+        start: "top-=330px center",
       },
     });
     return () => {
-      [sectionHeaderTween, mainTween].forEach((el) => el.scrollTrigger?.kill());
+      [
+        sectionHeaderTween,
+        paragraphContainerTween,
+        imageContainerTween,
+      ].forEach((el) => el.scrollTrigger?.kill());
     };
   }, []);
   return (
@@ -55,8 +69,8 @@ const About = () => {
           <SectionTitle index={1}>About Me</SectionTitle>
           <SectionHeaderBar />
         </SectionHeader>
-        <Main ref={MainEl}>
-          <ParagraphContainer>
+        <Main>
+          <ParagraphContainer ref={paragraphContainerEl}>
             <Paragraph>
               Hello, my name is <Strong>Ibrahim Dembele</Strong> and I am{" "}
               <Strong>22 years old</Strong>. I currently reside in{" "}
@@ -95,7 +109,7 @@ const About = () => {
               a reality.
             </Paragraph>
           </ParagraphContainer>
-          <ImageContainer>
+          <ImageContainer ref={imageContainerEl}>
             <ImageWrapper className="imageWrapper">
               <Image
                 src={`${process.env.PUBLIC_URL}/assets/ma-photo.png`}

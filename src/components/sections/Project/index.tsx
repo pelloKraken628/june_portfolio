@@ -94,10 +94,10 @@ const Project = () => {
     });
     const slideContainerTween = gsap.from(".slideContainer", {
       ...fromFadeInUp,
-      delay: 0.3,
+      delay: 0.1,
       scrollTrigger: {
         trigger: sectionEl.current,
-        start: "top-=370px center",
+        start: "top-=330px center",
       },
     });
     return () => {

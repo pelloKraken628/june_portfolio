@@ -19,13 +19,14 @@ const Copyright = () => {
     "Nine",
   ];
   const containerEl = useRef<HTMLDivElement>(null);
+  const isDesktop = window.innerWidth > 992;
   useLayoutEffect(() => {
     const containerTween = gsap.from(containerEl.current, {
       ...fromFadeIn,
       delay: 0.1,
       scrollTrigger: {
         trigger: containerEl.current,
-        start: "top-=570px center",
+        start: isDesktop ? "top-=470px center" : "top-=520px center",
       },
     });
 

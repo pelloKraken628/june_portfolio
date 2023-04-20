@@ -12,10 +12,9 @@ const Container = styled.header<ContainerProps>`
 width:100%;
 height:70px;
 display:flex;
-position: ${({ isNearSticky, isSticky }) => isNearSticky || isSticky ? "fixed" : "initial"};
+position: sticky;
 top: ${({ isNearSticky, isSticky }) => isNearSticky || isSticky ? 0 : "-100%"};
 transition:all 0.25s cubic-bezier(0.645,0.045,0.355,1);
-box-shadow: ${({ isSticky }) => isSticky ? "0 0" : "none"};
 background-color:${({ isMenuOpen, theme, isSticky }) => isMenuOpen || !isSticky ? "transparent" : theme.palette.secondary.main};
 box-shadow: ${({ isSticky }) => isSticky ? "0 2px 4px rgba(0,0,0,0.075)" : "none"};
 z-index:9;

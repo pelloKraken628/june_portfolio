@@ -12,7 +12,7 @@ import Cloud from "./Cloud";
 import { CanvasContainer, Container, Wrapper } from "./Skills.style";
 
 const Skills = () => {
-  const wrapperEl = useRef();
+  const sectionEl = useRef();
   const sectionHeaderEl = useRef();
   const canvasContainerEl = useRef();
   useLayoutEffect(() => {
@@ -20,16 +20,16 @@ const Skills = () => {
       ...fromFadeInUp,
       delay: 0.1,
       scrollTrigger: {
-        trigger: wrapperEl.current,
+        trigger: sectionEl.current,
         start,
       },
     });
     const canvasContainerTween = gsap.from(canvasContainerEl.current, {
       ...fromFadeInUp,
-      delay: 0.3,
+      delay: 0.1,
       scrollTrigger: {
-        trigger: wrapperEl.current,
-        start: "top-=370px center",
+        trigger: sectionEl.current,
+        start: "top-=290px center",
       },
     });
 
@@ -41,8 +41,8 @@ const Skills = () => {
   }, []);
 
   return (
-    <Container>
-      <Wrapper ref={wrapperEl}>
+    <Container ref={sectionEl}>
+      <Wrapper>
         <SectionHeader ref={sectionHeaderEl}>
           <SectionTitle index={2}> Skills</SectionTitle>
           <SectionHeaderBar />
