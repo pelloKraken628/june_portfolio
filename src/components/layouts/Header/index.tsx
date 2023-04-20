@@ -158,7 +158,13 @@ const Header: React.FC<HeaderProps> = ({ timelineIdx, onSetTlIdx }) => {
     }
     return () => {};
   }, [timelineIdx]);
-
+  // function to call on logo click
+  const handleClickLogo = (
+    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+  ) => {
+    handleScrollTop();
+    handleToggleMenu(e);
+  };
   return (
     <>
       <ScrollTopBtn display={isSticky && !toggleMenu} onClick={handleScrollTop}>
@@ -170,7 +176,7 @@ const Header: React.FC<HeaderProps> = ({ timelineIdx, onSetTlIdx }) => {
         isNearSticky={isNearSticky}
       >
         <Wrapper ref={wrapperEl}>
-          <LogoContainer onClick={handleScrollTop} to="/">
+          <LogoContainer onClick={handleClickLogo} to="/">
             <Logo>IKD</Logo>
           </LogoContainer>
           <HamburgerContainer onClick={handleToggleMenu}>
