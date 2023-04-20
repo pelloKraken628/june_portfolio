@@ -66,6 +66,11 @@ const Header: React.FC<HeaderProps> = ({ timelineIdx, onSetTlIdx }) => {
       style.overflow = "hidden";
     }
   };
+  // close menu by clicking on body
+  const blurEl = useRef<HTMLDivElement>(null);
+  const handleCloseMenu = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    if (e.target === blurEl.current) setToggleMenu(false);
+  };
   // header scroll animation
   const [isNearSticky, setIsNearSticky] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
@@ -190,7 +195,7 @@ const Header: React.FC<HeaderProps> = ({ timelineIdx, onSetTlIdx }) => {
             <Resume>Resume</Resume>
           </Nav>
         </Wrapper>
-        <Blur isVisible={toggleMenu} />
+        <Blur ref={blurEl} onClick={handleCloseMenu} isVisible={toggleMenu} />
       </Container>
       <SocialContainer ref={socialContainerEl}>
         {socialIcons.map(({ icon, link }, idx) => (
