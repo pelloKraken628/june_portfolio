@@ -34,7 +34,6 @@ const About = () => {
       scrollTrigger: {
         trigger: sectionEl.current,
         start: start,
-        markers: true,
       },
     });
     const mainTween = gsap.from(MainEl.current, {
