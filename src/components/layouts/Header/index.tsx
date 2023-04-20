@@ -69,7 +69,9 @@ const Header: React.FC<HeaderProps> = ({ timelineIdx, onSetTlIdx }) => {
   // close menu by clicking on body
   const blurEl = useRef<HTMLDivElement>(null);
   const handleCloseMenu = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    if (e.target === blurEl.current) setToggleMenu(false);
+    if (e.target === blurEl.current) {
+      handleToggleMenu(e);
+    }
   };
   // header scroll animation
   const [isNearSticky, setIsNearSticky] = useState(false);
